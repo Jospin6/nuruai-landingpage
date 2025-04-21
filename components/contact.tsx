@@ -190,7 +190,7 @@ export default function Contact() {
                   className="w-full h-[42px] px-4 text-sm text-white bg-black/40 backdrop-blur-md border border-white/10 rounded-lg focus:outline-none focus:border-purple-500/70 transition duration-300 appearance-none"
                 >
                   <option className="bg-black text-white" value="">Sélectionnez un budget</option>
-                  <option className="bg-black text-white" value="-500">Moins de 500$</option>
+                  <option className="bg-black text-white" value="Moins de 500">Moins de 500$</option>
                   <option className="bg-black text-white" value="500-1000">500$ - 1 000$</option>
                   <option className="bg-black text-white" value="1000-5000">1 000$ - 5 000$</option>
                   <option className="bg-black text-white" value="5000-10000">5 000$ - 10 000$</option>
