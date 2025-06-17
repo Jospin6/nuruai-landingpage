@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Phone, MapPin } from "lucide-react"
 import emailjs from "emailjs-com"
+import Link from "next/link"
 
 const SERVICE_ID = "service_jqloo7b"
 const TEMPLATE_ID = "template_i4v6fk2"
@@ -115,12 +116,12 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className=" flex justify-center lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView && { opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-black/40 md:w-2/4 w-full backdrop-blur-lg border border-white/10 rounded-2xl p-8"
+            className="bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl p-8"
           >
             <h3 className="text-2xl font-bold mb-6 text-white">Envoyez-nous un message</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -207,6 +208,72 @@ export default function Contact() {
                 {loading ? "Loading..." : "Envoyer le message"}
               </Button>
             </form>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={isInView && { opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col justify-start"
+          >
+            <div className="bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl p-8 mb-8">
+              <h3 className="text-2xl font-bold mb-6 text-white">Informations de Contact</h3>
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                    <Mail className="text-white" size={20} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-medium text-white">Email</h4>
+                    <p className="text-gray-300">jospinndagano1@gmail.com</p>
+                  </div>
+                </div>
+                <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                    <Phone className="text-white" size={20} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-medium text-white">Téléphone</h4>
+                    <p className="text-gray-300">+250 725 514 275</p>
+                  </div>
+                </div>
+                {/* <div className="flex items-start">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center">
+                    <MapPin className="text-white" size={20} />
+                  </div>
+                  <div className="ml-4">
+                    <h4 className="text-lg font-medium text-white">Adresse</h4>
+                    <p className="text-gray-300">
+                      123 Avenue de l'Innovation
+                      <br />
+                      75008 Paris, France
+                    </p>
+                  </div>
+                </div> */}
+              </div>
+            </div>
+
+            <div className="bg-black/40 backdrop-blur-lg border border-white/10 rounded-2xl p-8">
+              <h3 className="text-2xl font-bold mb-6 text-white">Horaires d'Ouverture</h3>
+              <div className="space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-300">Lundi - Vendredi</span>
+                  <span className="text-white font-medium">9:00 - 18:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-300">Samedi</span>
+                  <span className="text-white font-medium">10:00 - 15:00</span>
+                </div>
+                <div className="flex justify-between pb-4">
+                  <span className="text-gray-300">Dimanche</span>
+                  <span className="text-white font-medium">Fermé</span>
+                </div>
+                <Link href={"https://calendly.com/nuruai/30min"}>
+                  <Button type="submit" className={`w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white rounded-xl py-6`}>
+                    Discutons de votre projet
+                  </Button>
+                </Link>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
