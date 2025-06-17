@@ -11,11 +11,12 @@ export default function Footer() {
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSubscribe = async () => {
     setError('')
     setSuccess('')
-    console.log(email)
+    setLoading(true)
 
     if (!email || !email.includes('@')) {
       setError("Entrez un email valide")
@@ -31,12 +32,12 @@ export default function Footer() {
         },
         'D1AqMBUddqJ1836a6'
       )
-      console.log(result.text)
       setSuccess("Merci ! Vous recevrez nos actus IA très bientôt.")
       setEmail('')
+      setLoading(false)
     } catch (err) {
-      console.log(err)
       setError("Une erreur est survenue. Réessayez plus tard.")
+      setLoading(false)
     }
   }
 
@@ -129,6 +130,8 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-bold text-white mb-6">Newsletter</h4>
             <p className="text-gray-300 mb-4">Abonnez-vous pour recevoir les dernières actualités sur l'IA</p>
+            {error && <p className="text-red-500 mb-2">{error}</p>}
+            {success && <p className="text-green-500 mb-2">{success}</p>}
             <div className="flex space-x-2">
               <Input
                 placeholder="Votre email"
@@ -136,7 +139,7 @@ export default function Footer() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="bg-black/60 border-white/10 text-white" />
               <Button onClick={handleSubscribe} className="bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white">
-                S'abonner
+                {!loading ? "S'abonner": "Loading..."}
               </Button>
             </div>
           </div>

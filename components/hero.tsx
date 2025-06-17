@@ -87,9 +87,9 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row justify-center gap-4"
           >
-            <Link href={"#contact"}>
+            <Link href={"https://calendly.com/nuruai/30min"}>
               <Button className="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full px-8 py-6 text-lg">
-              Démarrez votre automatisation dès maintenant
+                Discutons de votre projet
               </Button>
             </Link>
 
