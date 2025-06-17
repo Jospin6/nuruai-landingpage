@@ -15,6 +15,7 @@ const USER_ID = "D1AqMBUddqJ1836a6"
 export default function Contact() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false })
+  const [loading, setLoading] = useState(false)
 
   const [formData, setFormData] = useState({
     name: "",
@@ -62,30 +63,33 @@ export default function Contact() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!validate()) return
+    setLoading(true);
 
-    try {
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        {
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          budget: formData.budget,
-        },
-        USER_ID
-      )
-      console.log("✅ Email envoyé avec succès !")
-      alert("Merci ! Nous allons vous recontacter dans moins de 24h.")
+    const res = await fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        budget: formData.budget,
+      }),
+    });
+
+    if (res.ok) {
+      alert("Mail envoyé avec succès !");
+      setLoading(false);
       setFormData({ name: "", email: "", subject: "", message: "", budget: "" })
-    } catch (error) {
-      console.error("Erreur lors de l'envoi de l'email :", error)
-      alert("Une erreur est survenue. Veuillez réessayer.")
+    } else {
+      alert("Erreur lors de l'envoi.");
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <section id="contact" className="py-20 relative overflow-hidden">
@@ -199,8 +203,8 @@ export default function Contact() {
                 {errors.budget && <p className="text-sm text-red-500 mt-1">{errors.budget}</p>}
               </div>
 
-              <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white rounded-xl py-6">
-                Envoyer le Message
+              <Button type="submit" className={`w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:opacity-90 text-white rounded-xl py-6`} disabled={loading}>
+                {loading ? "Loading..." : "Envoyer le message"}
               </Button>
             </form>
           </motion.div>

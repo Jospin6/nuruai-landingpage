@@ -170,7 +170,7 @@ export default function WhyUs() {
             {
               title: "Support dédié et expertise IA",
               description:
-                "Bénéficiez d’un accompagnement expert à chaque étape. Notre équipe est composée de spécialistes IA prêts à vous aider à transformer vos idées en réalité.",
+                "Recevez un accompagnement clair à chaque étape. Notre équipe maîtrise l’IA et vous aide à transformer vos idées en solutions concrètes.",
             },
           ].map((reason, index) => (
             <motion.div
