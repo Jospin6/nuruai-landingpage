@@ -1,0 +1,2 @@
+export const mainUrl = process.env.NEXT_PUBLIC_MAIN_URL || 'https://smartcv-landingpage.vercel.app';
+export const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://smartcv-landingpage.vercel.app/api';
